@@ -21,10 +21,11 @@ scene.add(light)
 
 // create group of dots for image
 const imageGroup = new THREE.Group()
+let currentImage = 4
 
 const createDot = (x, y, z) => {
     const geometry = new THREE.SphereBufferGeometry(3, 10, 10)
-    const material = new THREE.MeshPhongMaterial( { color: 0xF1C232, emissiveIntensity: 0.2, emissive: 0xffffff} ) 
+    const material = new THREE.MeshPhongMaterial( { color: 0xB4A7D6, emissiveIntensity: 0.2, emissive: 0xffffff} ) 
     const mesh = new THREE.Mesh(geometry, material)
     mesh.position.set(x, y, z)
     imageGroup.add(mesh)
@@ -44,6 +45,7 @@ let crossCoor = []
 
 // create new image
 const img = new Image()
+
 img.onload = function () {
     ctx.drawImage(img, 0, 0)
 
@@ -68,17 +70,17 @@ img.onload = function () {
 }
 
 // current image
-const some = 1
-img.src = `./fonts/${some}.png`
-
+img.src = `./fonts/4.png`
 
 const animate = () => {
-    imageGroup.rotation.y += 0.011
+
+    imageGroup.rotation.y += 0.02
     imageGroup.rotation.x = -0.19
     imageGroup.rotation.z = Math.PI
     renderer.render(scene, camera)
 
     requestAnimationFrame(function () { animate() })
 }
+
 
 animate()
